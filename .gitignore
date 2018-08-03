@@ -1,4 +1,4 @@
-/target/
+/xy365-web/target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -26,4 +26,3 @@
 
 ###本地上传的零时文件####
 file/*
-*.class
