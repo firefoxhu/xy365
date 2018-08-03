@@ -1,3 +1,5 @@
+/xy365-admin/target/
+/xy365-core/target/
 /xy365-web/target/
 !.mvn/wrapper/maven-wrapper.jar
 
