@@ -11,16 +11,22 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/code")
-public class CodeValidateController {
+@RequestMapping("/sms")
+public class SMSController {
 
 
     @Autowired
     private SmsSender smsSender;
 
-    @GetMapping("/sms")
-    public Map<String,Object> send(String phone){
-       return   smsSender.send(phone);
+    @GetMapping("/send")
+    public Map<String,Object> SmsSend(String phone){
+        return   smsSender.send(phone);
+    }
+
+
+    @GetMapping("/verification")
+    public Map<String,Object> SmsValidate(String phone,String code){
+        return   smsSender.send(phone);
     }
 
 }

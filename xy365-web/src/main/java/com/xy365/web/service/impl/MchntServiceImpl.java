@@ -77,12 +77,12 @@ public class MchntServiceImpl implements MchntService {
         if(wxBindMchnt != null){
             throw new RuntimeException("抱歉一个微信号只能入住/绑定一个商户！");
         }
+        // TODO 验证码接口暂时不实现
+        // Map<String,Object> validateResult =  smsSender.validate(mchntForm.getMchntPhone(),mchntForm.getSmsCode());
 
-        Map<String,Object> validateResult =  smsSender.validate(mchntForm.getMchntPhone(),mchntForm.getSmsCode());
-
-        if(!(Boolean) validateResult.get("status")){
-            throw new RuntimeException(validateResult.get("message").toString());
-        }
+        //        if(!(Boolean) validateResult.get("status")){
+        //            throw new RuntimeException(validateResult.get("message").toString());
+        //        }
         Shop shopExist = shopRepository.findShopByName(mchntForm.getShopName());
 
         if(shopExist != null){
@@ -191,11 +191,14 @@ public class MchntServiceImpl implements MchntService {
                                 ).collect(Collectors.toList())
                         ).orElse(Arrays.asList())
                 )
-                .typeDTOS(
-                        typeRepository.findTypeByIdIn(typeIds).stream().map(e-> TypeDTO.builder().typeId(e.getId()).name(e.getName()).build()).collect(Collectors.toList())
-                ).shopSkillDescription(shopInfo.getSkillDescription())
+                .shopSkillDescription(shopInfo.getSkillDescription())
                 .description(shopInfo.getDescription())
                 .shopPhone(shopInfo.getPhone())
+                .typeDTOS(
+                        typeRepository.findTypeByIdIn(typeIds).stream().map(e->
+                                TypeDTO.builder().typeId(e.getId()).name(e.getName()).build()
+                        ).collect(Collectors.toList())
+                )
         .build();
         Map<String,Object> map = Maps.newHashMap();
         map.put("data",shopDTO);

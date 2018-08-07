@@ -26,7 +26,8 @@ public class SmsSender {
 
         if(times == null || (int)times <= 3){
             // 随机验证码
-            String code = RandomStringUtils.randomNumeric(6);
+            // String code = RandomStringUtils.randomNumeric(6);
+            String code = "666666";
             // 保存验证码到缓存一段过期时间
             redisTemplate.opsForValue().set(mobile,code,30, TimeUnit.MINUTES);
 

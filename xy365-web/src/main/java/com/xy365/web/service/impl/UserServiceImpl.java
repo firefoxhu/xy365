@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
                 User.builder()
                         .openId(wxSession.getOpenId())
                         .anonymousName(ChineseNameUtil.randomName())
-                        .anonymousAvatar(xyProperties.getFileConfig().getImageServer()+ RandomUtils.nextInt(1,10)+".png")
+                        .anonymousAvatar(xyProperties.getFileConfig().getImageServer()+"head_"+ RandomUtils.nextInt(1,10)+".png")
                         .status("0")
                         .build()
         ));

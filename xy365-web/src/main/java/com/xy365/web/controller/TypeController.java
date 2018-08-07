@@ -23,4 +23,9 @@ public class TypeController {
     public SimpleResponse findType(@PageableDefault(page = 0,size = 8,sort = {"sort"},direction = Sort.Direction.DESC) Pageable page,String codes){
         return SimpleResponse.success(typeService.findTypeByCategoryCode(codes.split(","),page));
     }
+
+    @GetMapping("/code")
+    public SimpleResponse findTypeByCode(String code){
+        return SimpleResponse.success(typeService.findTypeByCategory(code));
+    }
 }

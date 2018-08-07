@@ -8,15 +8,13 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class ArticleAspect {
+public class ControllerAspect {
 
-    @Pointcut("execution(* com.xy365.web.controller.ArticleController.findArticle(..))")
+    @Pointcut("execution(* com.xy365.web.controller.*.*(..))")
     public void cut(){}
 
     @Around("cut()")
     public Object twiceAsOld(ProceedingJoinPoint joinPoint){
-
-        // TODO 从此验证用户是否登录
 
         try {
             long start = System.currentTimeMillis();

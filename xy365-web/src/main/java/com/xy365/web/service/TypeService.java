@@ -9,4 +9,6 @@ public interface TypeService extends XyService {
 
     Map<String,Object> findTypeByCategoryCode(String[] codes, Pageable pageable);
 
+    Map<String,Object> findTypeByCategory(String code);
+
 }

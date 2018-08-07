@@ -6,6 +6,7 @@ import com.xy365.core.model.Type;
 import com.xy365.core.repository.TypeRepository;
 import com.xy365.web.domain.dto.CategoryDTO;
 import com.xy365.web.domain.dto.TypeDTO;
+import com.xy365.web.domain.support.ResultMap;
 import com.xy365.web.service.TypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,12 @@ public class TypeServiceImpl implements TypeService {
                 ));
 
         return map;
+    }
+
+    @Override
+    public Map<String, Object> findTypeByCategory(String code) {
+        return ResultMap.getInstance().put("list",typeRepository.findTypeByCategoryCode(code).stream() .map(t ->
+                TypeDTO.builder().typeId(t.getId()).name(t.getName()).build())
+                .collect(Collectors.toList())).toMap();
     }
 }
